@@ -70,7 +70,7 @@ in
       (lib.mkIf (cfg.sddmTheme != null) {
         services.displayManager.sddm.theme = lib.last (lib.splitString "/" cfg.sddmTheme);
 
-        services.displayManager.sddm.package = q.sddmPatched;
+        services.displayManager.sddm.package = lib.mkForce q.sddmPatched;
 
         # qt5compat: provides Qt5Compat.GraphicalEffects (rewritten from QtGraphicalEffects 1.15)
         # qtmultimedia: provides QtMultimedia for the Video.qml shim dropped into each theme
