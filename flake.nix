@@ -73,6 +73,11 @@
             # qt5compat provides Qt5Compat.GraphicalEffects; our shims re-expose it
             # as the legacy QtGraphicalEffects 1.15 import name.
             # Shims first — see comment in devShell for rationale.
+
+			export QT_PLUGIN_PATH="${pkgs.qt6.qtmultimedia}/lib/qt-6/plugins''${QT_PLUGIN_PATH:+:$QT_PLUGIN_PATH}"
+			# 🔧 库路径 - 解决 pipewire ABI 问题
+			export LD_LIBRARY_PATH="${pkgs.pipewire}/lib:${pkgs.ffmpeg}/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
             export QML_IMPORT_PATH="${qylockShell}/imports:${pkgs.qt6.qtmultimedia}/lib/qt-6/qml:${pkgs.kdePackages.qt5compat}/lib/qt-6/qml''${QML_IMPORT_PATH:+:$QML_IMPORT_PATH}"
             export QML2_IMPORT_PATH="$QML_IMPORT_PATH"
             export QML_XHR_ALLOW_FILE_READ=1
